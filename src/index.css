@@ -1,0 +1,22 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-family: Nunito, system-ui, sans-serif;
+    @apply text-app-base-text;
+  }
+
+  h1 {
+    @apply text-app-base-title;
+  }
+
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply text-app-base-subtitle;
+  }
+}
