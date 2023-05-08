@@ -1,19 +1,26 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useCallback } from 'react'
 import { api } from '../lib/axios'
 
+interface User {
+  html_url: string
+  bio: string
+  followers: number
+  avatar_url: string
+  name: string
+}
+
 export function useApiUser() {
-  const [user, setUser] = useState()
+  const [user, setUser] = useState<User>()
 
-  async function getUser() {
-    const reponse = await api.get('/users/bilusca')
+  const getUser = useCallback(async () => {
+    const reponse = await api.get<User>('/users/bilusca')
 
-    console.log(reponse.data)
     setUser(reponse.data)
-  }
+  }, [])
 
   useEffect(() => {
     getUser()
-  }, [])
+  }, [getUser])
 
   return { user }
 }
