@@ -3,7 +3,7 @@ import { faGithub } from '@fortawesome/free-brands-svg-icons'
 
 export function Profile() {
   return (
-    <div className="w-full bg-app-base-profile rounded-xl py-8 px-10 flex items-center gap-8">
+    <div className="w-full bg-app-base-profile rounded-xl py-8 px-10 flex items-center gap-8 mb-[4.625rem]">
       <div className="h-36 max-w-fit w-full rounded-lg relative">
         <img
           className="w-full h-full object-cover"
