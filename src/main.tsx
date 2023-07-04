@@ -12,6 +12,8 @@ import {
   faComment,
   faUpRightFromSquare,
 } from '@fortawesome/free-solid-svg-icons'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 
 library.add(
   faBuilding,
@@ -22,8 +24,13 @@ library.add(
   faUpRightFromSquare,
 )
 
+const queryClient = new QueryClient()
+
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <QueryClientProvider client={queryClient}>
+      <ReactQueryDevtools initialIsOpen />
+      <RouterProvider router={router} />
+    </QueryClientProvider>
   </React.StrictMode>,
 )

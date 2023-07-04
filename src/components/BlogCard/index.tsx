@@ -1,23 +1,32 @@
 import { Link } from 'react-router-dom'
+import removeMarkdown from 'remove-markdown'
+import { dateFormatter } from '../../utils/dateFormatter'
 
-export function BlogCard() {
+interface BlogCardProps {
+  title: string
+  body: string
+  createdAt: string
+  id: number
+}
+
+export function BlogCard({ id, title, body, createdAt }: BlogCardProps) {
+  const bodyToDisplay = removeMarkdown(body, {
+    stripListLeaders: true,
+    listUnicodeChar: '',
+    gfm: true,
+  })
+
+  const splicedText = bodyToDisplay.slice(0, 80)
+  const date = dateFormatter(createdAt)
+
   return (
-    <Link to="/post/teste">
+    <Link to={`/post/${id}`}>
       <div className="rounded-xl p-8 bg-app-base-post">
         <header className="flex justify-between mb-5">
-          <h4 className="text-xl text-app-base-title font-bold">
-            JavaScript data types and data structures
-          </h4>
-          <span>Há 1 dia</span>
+          <h4 className="text-xl text-app-base-title font-bold">{title}</h4>
+          <span>{date}</span>
         </header>
-        <p>
-          Programming languages all have built-in data structures, but these
-          often differ from one language to another. This article attempts to
-          list the built-in data structures available in JavaScript and what
-          properties they have. These can be used to build other data
-          structures. Wherever possible, comparisons with other languages are
-          drawn.
-        </p>
+        <p>{splicedText}...</p>
       </div>
     </Link>
   )
